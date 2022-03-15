@@ -2,6 +2,8 @@
 import json
 import mysql.connector
 import os
+
+# defing the function to print the information of complete document
 def print_info(x):
     print("ID                       : ",x[0])
     print("ISBN                     : ",x[1])
@@ -12,10 +14,11 @@ def print_info(x):
     print("Edition                  : ",x[6])
     print("Year of Publication      : ",x[7])
     print("Category                 : ",x[8])   
-    print("Total Number of pages    : ",x[9])
+    print("Total Number of Pages    : ",x[9])
     print("Price                    : ",x[10])
     print('\n')
 
+# defining the function to print the complete details of mysql records.
 def print_record(x):
     print("ISBN                     : ",x[0])
     print("Accession No.            : ",x[1])
@@ -25,7 +28,7 @@ def print_record(x):
     print("Edition                  : ",x[5])
     print("Year of Publication      : ",x[6])
     print("Category                 : ",x[7])   
-    print("Total Number of pages    : ",x[8])
+    print("Total Number of Pages    : ",x[8])
     print("Price                    : ",x[9])
     print('\n')
 
@@ -39,18 +42,49 @@ m = []
 for i in s:
     l = []
     d = json.loads(i)
+    x=list(d.keys())
     l.append(d['_id']['$oid'])
     id1.append(d['_id']['$oid'])
-    l.append(d['ISBN'])
-    l.append(d['Accession No.'])
-    l.append(d['Title'])
-    l.append(d['Author'].split(','))
-    l.append(d['Publisher'])
-    l.append(d['Edition'])
-    l.append(d['Year of Publication'])
-    l.append(d['Category'].split(','))
-    l.append(d['Total Number of Pages'])
-    l.append(d['Price'])
+    if 'ISBN' in x:
+        l.append(d['ISBN'])
+    else: 
+        l.append("")
+    if 'Accession No.' in x:    
+        l.append(d['Accession No.'])
+    else:
+        l.append("")
+    if 'Title' in x:
+        l.append(d['Title'])
+    else:
+        l.append("")
+    if 'Author' in x:
+        l.append(d['Author'].split(','))
+    else:
+        l.append("")
+    if 'Publisher' in  x:
+        l.append(d['Publisher'])
+    else:
+        l.append("")
+    if 'Edition' in x:    
+        l.append(d['Edition'])
+    else:
+        l.append("")
+    if 'Year of Publication' in x:
+        l.append(d['Year of Publication'])
+    else:
+        l.append("")
+    if 'Category' in x:
+        l.append(d['Category'].split(','))
+    else:
+        l.append("")
+    if 'Total Number of Pages' in x:
+        l.append(d['Total Number of Pages'])
+    else:
+        l.append("")
+    if 'Price' in x:
+        l.append(d['Price'])
+    else:
+        l.append("")
     m.append(l)
 print("************************************************************************************")
 # printing the number of documents in Books collection
@@ -85,7 +119,7 @@ else:
                 continue;
             print("Entering the record:\n")
             print_info(l)
-            query = """INSERT INTO books (ID,ISBN,Accession_No,Title,Publisher,Edition,Year,Pages,Price) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+            query = """INSERT INTO books (ID,ISBN,Accession,Title,Publisher,Edition,Year,Total,Price) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
             record = (l[0],l[1],l[2],l[3],l[5],l[6],l[7],l[9],l[10])
             cursor.execute(query,record)
             for j in range(len(l[4])):
@@ -114,8 +148,8 @@ else:
 x = input("Do you want the complete status of all records....y/n\n")
 # getting the status of the records inserted.    
 if x=='y':
-    print("Status of Mysql database:\n")
-    cursor.execute("select ISBN,Accession_No,Title,Author_name,Publisher,Edition,Year,Category,Pages,Price from books,category,bookauthor where books.Id=bookauthor.ID and books.Id=category.ID;")
+    print("Status of Mysql database (only complete records are shown):\n")
+    cursor.execute("select ISBN,Accession,Title,Author_name,Publisher,Edition,Year,Category,Total,Price from books,category,bookauthor where books.Id=bookauthor.ID and books.Id=category.ID;")
     result = cursor.fetchall()
     for i in range(len(result)):
         print_record(result[i])
