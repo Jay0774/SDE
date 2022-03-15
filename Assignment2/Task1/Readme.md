@@ -5,6 +5,7 @@
 ### 3. Insert Document into the  Books Collection using the commands.
 
 ->  use LibraryDB;
+
 ->  db.Books.insert({"ISBN" : "9780619216351","Accession No." : "040620180010","Title" : "Java programming : from problem analysis to program design","Author" : "D. S. Malik","Publisher" : "Boston : Course Technology/Thomson Learning","Edition" : 1,"Year of Publication" : 2003, "Category" : "java","Total Number of Pages" : 998,"Price" : 4897.53})
 
 ->  db.Books.insert({"ISBN" : "059600088X","Accession No." : "230820211652","Title" : "Java programming with Oracle JDBC","Author" : "Donald Bales","Publisher" : "Sebastopol, CA : O'Reilly","Edition" : 1,"Year of Publication" : 2002, "Category" : "java","Total Number of Pages" : 506,"Price" : 925})
