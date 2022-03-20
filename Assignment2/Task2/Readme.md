@@ -15,7 +15,7 @@
 
 -> CREATE TABLE LibraryDB.Publication( Publication varchar(100),Accession_No varchar(12) Primary Key);
 
--> CREATE TABLE LibraryDB.Year( Year varchar(4),Accession_No varchar(12) Primary Key);
+-> CREATE TABLE LibraryDB.Year_of_publication( year_p varchar(4),Accession_No varchar(12) Primary Key);
 
 -> CREATE TABLE LibraryDB.Price( Price varchar(6),Accession_No varchar(12) Primary Key);
 
@@ -53,4 +53,4 @@
 
 -> insert into Readers.Return_date values (260820102014,'16/04/2021');
 
-## 5. Run script.py to check referential integrity and insert new record into Readers.
+## 5. Run script.py to check referential integrity and insert a new record into Readers or Library, updating record in readers or library, and deleting records from readers and library.
