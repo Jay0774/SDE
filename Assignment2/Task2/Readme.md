@@ -20,7 +20,9 @@
 -> CREATE TABLE LibraryDB.Price( Price varchar(6),Accession_No varchar(12) Primary Key);
 
 -> CREATE TABLE LibraryDB.Category( Category varchar(100),Accession_No varchar(12) Primary Key);
----------------------------------------------------------------------------------------------------------
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 -> CREATE TABLE Readers.Reader_Id( AccessionNo varchar(12), ReaderID int Primary Key);
 
 -> CREATE TABLE Readers.Issue_Date( AccessionNo varchar(12), IssueDate varchar(10) );
@@ -34,7 +36,9 @@
 -> insert into LibraryDB.ISBN values (9780314933096,260820102014);
 
 -> insert into LibraryDB.ISBN values (9781617292453,100120220022);
-----------------------------------------------------------------------------------------------------------
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 -> insert into Readers.Reader_Id values (270520100056,0001);
 
 -> insert into Readers.Issue_date values (270520100056,'02/03/2021');
